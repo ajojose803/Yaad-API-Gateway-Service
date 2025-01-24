@@ -1,0 +1,148 @@
+syntax = "proto3";
+package user_package;
+
+service User {
+    rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
+    rpc Register(RegisterRequest) returns (RegisterResponse);
+    rpc SignupOtp(SignupOtpRequest) returns (SignupOtpResponse);
+    rpc ResendOtp(ResendOtpRequest) returns (ResendOtpResponse);
+    rpc GoogleLoginUser(GoogleLoginUserRequest) returns (GoogleLoginUserResponse);
+    rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse);
+    rpc GetUser(GetUserRequest) returns (GetUserResponse);
+    rpc UpdateUserProfile(UpdateUserProfileRequest) returns (UpdateUserProfileResponse);
+    rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse);
+    // rpc AddWalletBalance(AddWalletBalanceRequest) returns (AddWalletBalanceResponse);
+    // rpc RazorpayPayment(RazorpayPaymentRequest) returns (RazorpayPaymentResponse);
+}
+
+
+message LoginUserRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginUserResponse {
+    string message = 1;
+    string token = 2;
+    string refresh_token = 3;
+}
+
+message RegisterRequest {
+    string name = 1;
+    string email = 2;
+    string mobile = 3;
+    string password = 4;
+    string otp = 5;
+    string token = 6;
+}
+
+message RegisterResponse {
+    string message = 1;
+    bool success = 2;
+}
+
+message SignupOtpRequest {
+    string email = 1;
+    string otp = 2;
+}
+
+message SignupOtpResponse {
+    string message = 1;
+    bool success = 2;
+}
+
+message ResendOtpRequest {
+    string email = 1;
+}
+
+message ResendOtpResponse {
+    string message = 1;
+}
+
+message GoogleLoginUserRequest {
+    string google_token = 1;
+}
+
+message GoogleLoginUserResponse {
+    string message = 1;
+    string token = 2;
+    string refresh_token = 3;
+}
+
+message VerifyUserRequest {
+    string user_id = 1;
+}
+
+message VerifyUserResponse {
+    string message = 1;
+    bool verified = 2;
+}
+
+message GetUserRequest {
+    string user_id = 1;
+}
+
+message GetUserResponse {
+    string message = 1;
+    User user = 2;
+}
+
+message UpdateUserProfileRequest {
+    string user_id = 1;
+    string name = 2;
+    string email = 3;
+    string mobile = 4;
+    string user_image = 5;
+}
+
+message UpdateUserProfileResponse {
+    string message = 1;
+    bool success = 2;
+}
+
+message ChangePasswordRequest {
+    string user_id = 1;
+    string old_password = 2;
+    string new_password = 3;
+}
+
+message ChangePasswordResponse {
+    string message = 1;
+    bool success = 2;
+}
+
+message AddWalletBalanceRequest {
+    string user_id = 1;
+    double amount = 2;
+}
+
+message AddWalletBalanceResponse {
+    string message = 1;
+    double new_balance = 2;
+}
+
+message RazorpayPaymentRequest {
+    string user_id = 1;
+    string payment_id = 2;
+    double amount = 3;
+}
+
+message RazorpayPaymentResponse {
+    string message = 1;
+    bool success = 2;
+}
+
+message User {
+    string id = 1;
+    string name = 2;
+    string email = 3;
+    string mobile = 4;
+    string user_image = 5;
+    double wallet_balance = 6;
+    repeated string events_hosted = 7;
+    repeated string events_attended = 8;
+    string account_status = 9;
+    google.protobuf.Timestamp created_at = 10;
+    google.protobuf.Timestamp updated_at = 11;
+}
+
