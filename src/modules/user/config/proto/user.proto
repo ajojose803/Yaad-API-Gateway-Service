@@ -1,9 +1,9 @@
 syntax = "proto3";
-package user_package;
+package user;
 
 service User {
+    rpc RegisterUser(RegisterUserRequest) returns (RegisterUserResponse);
     rpc LoginUser(LoginUserRequest) returns (LoginUserResponse);
-    rpc Register(RegisterRequest) returns (RegisterResponse);
     rpc SignupOtp(SignupOtpRequest) returns (SignupOtpResponse);
     rpc ResendOtp(ResendOtpRequest) returns (ResendOtpResponse);
     rpc GoogleLoginUser(GoogleLoginUserRequest) returns (GoogleLoginUserResponse);
@@ -22,28 +22,40 @@ message LoginUserRequest {
 }
 
 message LoginUserResponse {
-    string message = 1;
-    string token = 2;
-    string refresh_token = 3;
+   string message = 1;
+    string name = 2;
+    string token = 3;
+    string _id = 4;
+    string refreshToken = 5;
+    string image = 6;
+    string email = 7;
+    string phone = 8;
 }
 
-message RegisterRequest {
+message RegisterUserRequest {
     string name = 1;
     string email = 2;
-    string mobile = 3;
+    string phone = 3;
     string password = 4;
-    string otp = 5;
-    string token = 6;
+    string userImage= 5;
+    string otp = 6;
 }
 
-message RegisterResponse {
-    string message = 1;
-    bool success = 2;
+message RegisterUserResponse {
+     string message = 1;
+    string name = 2;
+    string token = 3;
+    string _id = 4;
+    string refreshToken = 5;
+    string image = 6;
+    string email = 7;
+    string phone = 8;
 }
+
 
 message SignupOtpRequest {
     string email = 1;
-    string otp = 2;
+    string name = 2;
 }
 
 message SignupOtpResponse {
@@ -84,7 +96,11 @@ message GetUserRequest {
 
 message GetUserResponse {
     string message = 1;
-    User user = 2;
+    string _id = 2;
+    string name = 3;
+    string email = 4;
+    string phone = 5;
+    string userImage = 6;
 }
 
 message UpdateUserProfileRequest {
@@ -130,19 +146,5 @@ message RazorpayPaymentRequest {
 message RazorpayPaymentResponse {
     string message = 1;
     bool success = 2;
-}
-
-message User {
-    string id = 1;
-    string name = 2;
-    string email = 3;
-    string mobile = 4;
-    string user_image = 5;
-    double wallet_balance = 6;
-    repeated string events_hosted = 7;
-    repeated string events_attended = 8;
-    string account_status = 9;
-    google.protobuf.Timestamp created_at = 10;
-    google.protobuf.Timestamp updated_at = 11;
 }
 
