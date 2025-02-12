@@ -22,10 +22,10 @@ message LoginUserRequest {
 }
 
 message LoginUserResponse {
-   string message = 1;
-    string name = 2;
-    string token = 3;
-    string _id = 4;
+    string message = 1;
+    string _id = 2;
+    string name = 3;
+    string accessToken = 4;
     string refreshToken = 5;
     string image = 6;
     string email = 7;

@@ -1,10 +1,10 @@
-// import 'dotenv/config';
-// import App from './app'
+import 'dotenv/config';
+import App from './app'
 
-// const port = Number(process.env.PORT)
+const port = Number(process.env.PORT)
 
-// const app = new App()
+const app = new App()
 
-// app.startServer(port)
+app.startServer(port)
 
 

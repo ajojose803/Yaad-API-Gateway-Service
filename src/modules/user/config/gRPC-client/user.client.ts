@@ -13,7 +13,7 @@ const Domain =
     ? process.env.DEV_DOMAIN
     : process.env.PRO_DOMAIN_USER;
 
-const UserService = new grpcObject.user_package.User(
+const UserService = new grpcObject.user.User(
   `${Domain}:${process.env.USER_GRPC_PORT}`,
   grpc.credentials.createInsecure()
 );
